@@ -198,6 +198,4 @@ const login = async (req, res) => {
   }
 };
 
-
-
 module.exports = { getUser, createUser, deleteUser, updateUser, login };
