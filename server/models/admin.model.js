@@ -10,9 +10,9 @@ const adminSchema = new mongoose.Schema({
     password:{
         type: String
     },
-    addMovie:[{
-        type: String
-    }]
+    // addMovie:[{
+    //     type: String
+    // }]
 })
 
 const admin = mongoose.model('adminSchema', adminSchema)

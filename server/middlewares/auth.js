@@ -14,10 +14,13 @@ let authenticate = (req, res, next) => {
   }
 
   let user = jwt.verify(token, secret);
+  let admin = jwt.verify(token, secret)
 
   console.log(user.data);
+  console.log(admin.data);
 
   req.user = user;
+  req.admin = admin
   next();
 };
 

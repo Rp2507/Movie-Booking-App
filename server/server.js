@@ -8,20 +8,20 @@ const cookieParser = require("cookie-parser");
 
 const app = express();
 
-// body-parser
+// ======================= body-parser ==========================
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-// cookie-parser
+// ======================= cookie-parser =========================
 app.use(cookieParser())
 
-// routes
+// ====================== routes ========================
 app.use('/v1', routes)
 
-// db connect
+//======================= db connect ======================
 dbConnect()
 
-// create server
+// ===================== create server ====================
 http.createServer(
   app.listen(process.env.PORT, () => {
     console.log("server started");

@@ -28,7 +28,8 @@ const getUser = async (req, res) => {
 const createUser = async (req, res) => {
   try {
     let { name, email, password } = req.body;
-    let profile = req.file.path;
+    // let profile = req.file.path;
+    let profile = req.file;
 
     // bcrypt
     const saltRounds = 10;
@@ -181,18 +182,17 @@ const login = async (req, res) => {
       throw new Error("user not found");
     }
 
-    if (reqPassword === user.password) {
-      let isPassword = await bcrypt.compareSync(req.body.password);
-      console.log(user, "user");
+    const validPassword = await bcrypt.compareSync(reqPassword, user.password);
+    console.log(user, "user");
 
-      let token = createToken(user);
-      res.cookie("token", token);
-      res.status(200).json({ message: "login success", token });
-
-      if (!isPassword) {
-        throw new Error("Plz enter correct password");
-      }
+    if (!validPassword) {
+      return res.status(401).json({ message: "Invalid password" });
     }
+
+    let token = createToken(user);
+    res.cookie("token", token);
+    res.status(200).json({ message: "login success", token });
+
   } catch (err) {
     res.status(500).json({ success: false, err: err.message });
   }
