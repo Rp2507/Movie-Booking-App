@@ -1,13 +1,3 @@
-# Backend
-
-## BASE URL: `localhost:3001/v1`
-
-### `User Endpoints`
-## User Registration
-
-
-# Frontend
-
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
