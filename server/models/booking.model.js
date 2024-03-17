@@ -2,16 +2,22 @@ const mongoose = require("mongoose");
 
 const bookingSchema = new mongoose.Schema({
   movie: {
-    type: String,
+    type: mongoose.Types.ObjectId,
+    ref: "Movie",
+    require: true,
   },
   date: {
     type: Date,
+    require: true,
   },
   seatNumber: {
     type: Number,
+    require: true,
   },
   user: {
-    type: String,
+    type: mongoose.Types.ObjectId,
+    ref: "User",
+    require: true,
   },
 });
 

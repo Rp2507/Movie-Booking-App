@@ -192,10 +192,67 @@ const login = async (req, res) => {
     let token = createToken(user);
     res.cookie("token", token);
     res.status(200).json({ message: "login success", token });
-
   } catch (err) {
     res.status(500).json({ success: false, err: err.message });
   }
 };
 
-module.exports = { getUser, createUser, deleteUser, updateUser, login };
+// ========= get Booking of user ===========
+const getBookingOfUser = async (req, res) => {
+  try {
+    let id = req.params.id;
+
+    let booking = await userService.findBooking(id);
+
+    if (!booking) {
+      return res.status(500).json({ message: "Unable to get Bookings" });
+    }
+
+    res.status(200).json({
+      success: true,
+      message: "get booking successfully",
+      booking,
+    });
+  } catch (error) {
+    res.status(error?.status || 400).json({
+      success: false,
+      message: error?.message || "Somthing went wrong!",
+    });
+  }
+};
+
+// =========== get user by id ==========
+const getUserById = async (req, res) => {
+  try {
+    const id = req.params.id;
+
+    let user = await userService.findUserById(id);
+
+     if (!user) {
+       return res.status(500).json({ message: "User not found" });
+     }
+
+     res.status(200).json({
+      success: true,
+      message: 'user get successfully',
+      user
+     })
+
+
+  } catch (error) {
+    res.status(error?.status || 400).json({
+      success: false,
+      message: error?.message || "Somthing went wrong!",
+    });
+  }
+};
+
+module.exports = {
+  getUser,
+  createUser,
+  deleteUser,
+  updateUser,
+  login,
+  getBookingOfUser,
+  getUserById,
+};

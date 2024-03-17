@@ -1,4 +1,5 @@
-const { userSchema } = require("../models")
+const { userSchema, bookingSchema } = require("../models")
+const booking = require("../models/booking.model")
 
 // get user
 const getUser = () =>{
@@ -30,6 +31,11 @@ const updateUser = (id, body) => {
     return userSchema.findByIdAndUpdate(id, {$set: body})
 }
 
+// find booking
+const findBooking = (id) => {
+return bookingSchema.find({ user: id}).populate("movie").populate("user")
+}
+
 module.exports = {
   getUser,
   findUserByEmail,
@@ -37,4 +43,5 @@ module.exports = {
   findUserById,
   deleteUser,
   updateUser,
+  findBooking,
 };

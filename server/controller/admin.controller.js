@@ -93,4 +93,33 @@ const getAdminList = async (req, res) => {
   }
 }
 
-module.exports = { createAdmin, login, getAdminList };
+// ============ get admin by id ============
+const getAdminById = async (req, res) => {
+  try {
+      let id = req.params.id;
+
+      if(!id){
+        throw new Error('id not get')
+      }
+
+      let admin = await adminService.getAdminById(id)
+
+      if(!admin){
+        throw new Error('CanNot find Admin')
+      }
+
+      res.status(200).json({
+        success: true,
+        message: "admin get successfully",
+        admin
+      })
+
+  } catch (error) {
+     res.status(400).json({
+       success: false,
+       message: error.message || "something went wrong",
+     });
+  }
+}
+
+module.exports = { createAdmin, login, getAdminList, getAdminById };

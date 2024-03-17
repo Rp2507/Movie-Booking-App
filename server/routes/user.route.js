@@ -20,5 +20,7 @@ route.put(
   userController.updateUser
 );
 route.post("/login", userController.login);
+route.get("/getUser/:id", userController.getUserById)
+route.get("/bookings/:id", userController.getBookingOfUser)
 
 module.exports = route;

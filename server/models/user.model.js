@@ -12,7 +12,11 @@ const userSchema = new mongoose.Schema({
     },
     profile:{
         type: String
-    }
+    },
+    booking: [{
+        type: mongoose.Types.ObjectId,
+        ref: "Booking"
+    }]
 })
 
 const user = mongoose.model("userSchema", userSchema)

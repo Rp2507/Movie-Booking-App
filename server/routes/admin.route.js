@@ -9,7 +9,8 @@ route.post(
   validate(adminValidation.admin),
   adminController.createAdmin
 );
-route.post("/login", adminController.login)
-route.get("/getAdminList", adminController.getAdminList)
+route.post("/login", adminController.login);
+route.get("/getAdminList", adminController.getAdminList);
+route.get("/getAdmin/:id", adminController.getAdminById)
 
 module.exports = route;

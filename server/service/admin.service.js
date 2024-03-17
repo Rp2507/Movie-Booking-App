@@ -15,4 +15,9 @@ const getAdminList = () => {
   return adminSchema.find()
 }
 
-module.exports = { findAdminByEmail, createAdmin, getAdminList };
+//  ========== get admin by id ==========
+const getAdminById = (id) => {
+  return adminSchema.findById(id).populate("addedMovies")
+}
+
+module.exports = { findAdminByEmail, createAdmin, getAdminList, getAdminById };

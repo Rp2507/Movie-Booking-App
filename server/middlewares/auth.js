@@ -1,5 +1,5 @@
 let jwt = require("jsonwebtoken");
-let secret = "movie_app";
+let secret = process.env.SECRET;
 
 let createToken = (data) => {
   return jwt.sign({ data }, secret);
